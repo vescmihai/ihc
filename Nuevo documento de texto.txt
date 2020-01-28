@@ -1,0 +1,137 @@
+public class NewApplet extends Applet {
+    private Label ls;
+    private TextField tfs;
+    private TextArea ta;
+    private Button btnCantidad;
+    public void init() {
+        ls = new Label("Ingrese una cadena");
+        tfs = new TextField(40);
+        ta = new TextArea(10, 40);
+        btnCantidad = new Button("Contar palabras");
+        this.add(ls); this.add(tfs);
+        this.add(btnCantidad);
+        this.add(ta);
+    }
+    public boolean action(Event evt, Object what) {
+        if(evt.target == btnCantidad){
+            String cad = tfs.getText();
+            int r = cantidadPalabra(cad);
+            ta.setText(String.valueOf(r));
+        }
+        return super.action(evt, what); 
+    }
+    public int cantidadPalabra(String cad){
+        int cantidad = 0, cp = 0;
+        for(int i = 0; i < cad.length(); i++){
+            char c = cad.charAt(i);
+            if( c != 32 ) {
+            cp++;
+        }
+        else{
+            if( cp > 0 ){
+                cantidad++;
+            }
+            cp = 0;
+        }
+    }
+    if( cp > 0 ){
+        cantidad++;
+    }
+    return cantidad;
+    }
+}
+
+
+public class NewApplet2 extends Applet {
+    private String S1;
+    private Label ls;
+    private TextField tf;
+    private TextArea ta;
+    public void init() {
+        ls = new Label("Ingresar la cadena:");
+        tf = new TextField(10);
+        ta = new TextArea(10, 20);
+        this.add(ls);
+        this.add(tf);
+        this.add(ta);
+    }
+    public boolean action(Event e,Object o){
+        if(e.target==tf){
+            S1=tf.getText();
+            invertir(S1);
+        }
+        return true;
+    }
+
+    public void invertir(String x){
+        int x1=0;
+        for (int i = 1; i <= S1.length(); i++) {
+            x1=i-1;
+            String a=S1.substring(S1.length()-i,S1.length()-x1);
+            ta.append(a+"");
+        }
+    }
+}
+
+
+public class NewApplet3 extends Applet {
+    int a[]={1,3,2,5,6,9};
+    int b[]=new int[cantidadimpares(a)];
+    public void paint(Graphics g){
+        g.drawString("Impares", 50, 15);
+        Impares(a,b);
+        for (int i = 0,fila=30; i < b.length; i++,fila+=15) {
+            g.drawString(""+b[i], 50, fila);
+        }
+    }
+    private void Impares(int[] a, int[] b) {
+        int k=0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i]%2!=0) {
+                b[k]=a[i];
+                k++;
+            }
+        }
+    }
+    private int cantidadimpares(int[] a) {
+        int c=0;
+        for (int i = 0; i <a.length; i++) {
+            if (a[i]%2!=0) {
+                c++;
+            }
+        }
+        return c;
+    }
+}
+
+public class NewApplet4 extends Applet {
+    Integer[] a = {1,8,7};
+    Integer[] b = {1,8,7};
+    Integer[] c = {1,8,7};
+
+    public void paint(Graphics g){
+        g.drawString("VEC", 50, 15);
+        g.drawString("ASC", 100, 15);
+        g.drawString("DEC", 150, 15);
+        ascendente(b);
+        descendente(c);
+        for (int i = 0, fila = 30; i < 3; i++, fila += 15) {
+            g.drawString(a[i] + "", 50, fila);
+            g.drawString(b[i] + "", 100, fila);
+            g.drawString(c[i] + "", 150, fila);
+        }
+    }
+    private void ascendente(Integer[] b) {
+        Arrays.sort(b);
+    }
+    private void descendente(Integer[] c) {
+        Arrays.sort(c, Comparator.reverseOrder());
+    }
+    private String cadena(char c, int n) {
+        String s1 = "";
+        for (int i = 1; i <= n; i++) {
+            s1 = s1 + c;
+        }
+    return s1;
+    }
+}
